@@ -5,6 +5,22 @@ import json
 from pathlib import Path
 import logging
 import subprocess
+project root = Path(__file__).resolve().parent.parent
+if str(project_root) not in sys.path:
+    sys.path.insert(0, str(project_root))
+
+# path variables
+config_path = project_root / 'config'
+logs_path = project_root / 'logs'
+# looger setup
+def setup_logging():
+    log_file = logs_path / 'infra_simulation.log'
+    logging.basicConfig(
+        filename=log_file,
+        level=logging.INFO,
+        format='%(asctime)s - %(levelname)s - %(message)s'
+    )
+    logging.info('Logging setup complete.') 
 
 ## get user input
 def get_user_input():
